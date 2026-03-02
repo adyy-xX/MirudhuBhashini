@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret Unlock 💙</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+    overflow: hidden;
+    color: white;
+}
+
+/* Animated Stars */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    animation: moveStars 60s linear infinite;
+    z-index: -1;
+}
+
+@keyframes moveStars {
+    from {background-position: 0 0;}
+    to {background-position: 10000px 5000px;}
+}
+
+/* Unlock Box */
+.unlock-box {
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 30px #4da6ff;
+    backdrop-filter: blur(10px);
+    width: 340px;
+    transition: 0.3s;
+}
+
+.unlock-box.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes shake {
+    0% {transform: translateX(0);}
+    25% {transform: translateX(-10px);}
+    50% {transform: translateX(10px);}
+    75% {transform: translateX(-10px);}
+    100% {transform: translateX(0);}
+}
+
+h2 {
+    color: #4da6ff;
+}
+
+input {
+    padding: 12px;
+    width: 85%;
+    border-radius: 30px;
+    border: none;
+    text-align: center;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+button {
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    background: #4da6ff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: white;
+    color: #2c5364;
+}
+
+#error {
+    margin-top: 10px;
+    color: #ff6b6b;
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: #4da6ff;
+    animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Hidden Hint */
+.hint {
+    position: absolute;
+    bottom: 10px;
+    font-size: 11px;
+    opacity: 0.08;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="unlock-box" id="box">
+    <h2> A Secret For Mithu </h2>
+    <input type="password" id="password" placeholder="Enter password">
+    <br>
+    <button onclick="unlock()">Unlock</button>
+    <p id="error"></p>
+</div>
+
+<!-- Hidden Hint -->
+<div class="hint">
+    You're the prettiest woman ever
+</div>
+
+<!-- Unlock Sound -->
+<audio id="unlockSound">
+    <!-- Replace with your own sound file if needed -->
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const wrongMessages = [
+        "Wrong password, 3 attempts left",
+        "Wrong password, 2 attempts left",
+        "JK,this does not have an attempt limit.Keep tryimng",
+        "Hint : Its the day we officially met for the first time",
+        "Try it in DDMMYYYY format",
+        "Dei maanga mandaiaya",
+        "Nee pesama idha close paniru"
+    ];
+
+    let attemptIndex = 0;
+
+    window.unlock = function () {
+
+        const correctPassword = "16122022";
+        const entered = document.getElementById("password").value;
+        const errorText = document.getElementById("error");
+        const box = document.getElementById("box");
+
+        if (entered === correctPassword) {
+
+            errorText.innerHTML = "Unlocked, FINALLYYY!";
+
+            if (document.getElementById("unlockSound")) {
+                document.getElementById("unlockSound").play();
+            }
+
+            startHearts();
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 2500);
+
+        } else {
+
+            if (attemptIndex < wrongMessages.length) {
+                errorText.innerHTML = wrongMessages[attemptIndex];
+                attemptIndex++;
+            } else {
+                errorText.innerHTML = wrongMessages[wrongMessages.length - 1];
+            }
+
+            if (box) {
+                box.classList.add("shake");
+                setTimeout(() => box.classList.remove("shake"), 400);
+            }
+        }
+    };
+
+    function startHearts() {
+        for (let i = 0; i < 30; i++) {
+            let heart = document.createElement("div");
+            heart.innerHTML = "💙";
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            document.body.appendChild(heart);
+        }
+    }
+
+});
+</script>
+</body>
+</html>
