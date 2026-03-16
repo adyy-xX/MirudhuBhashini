@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunflower Page 🌻</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#fff176,#ffd54f,#ffeb3b);
+
+    min-height:100vh;
+    overflow-y:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding:40px 20px;
+}
+
+/* Center Message Box */
+
+.message-box{
+    background:rgba(255,255,255,0.9);
+    padding:45px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(255,200,0,0.7);
+    max-width:1000px;
+}
+
+/* Title */
+
+h1{
+    color:#e65100;
+    margin-bottom:10px;
+}
+
+/* Message text */
+
+p{
+    font-size:18px;
+    color:#6d4c41;
+}
+
+/* Floating Sunflowers */
+
+.sunflower{
+    position:fixed;
+    bottom:-40px;
+    font-size:30px;
+    animation:floatUp 8s linear infinite;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="message-box">
+    <h1>Goodbye, my champion🌻</h1>
+    <p>
+       So that is it I guess. We end our chapter together in this lifetime. I have always thought that I'll spend my entire life with you and die loving you. "And when I’m six feet underground,and the bugs eat my heart, all that they'll taste is you.".Like a sunflower that always turns towards the sun
+        my heart always turns towards you. I had lots of dreams and plans for the future. Even though I always did not discuss about marriage, my heart and brain always kept planning a future with you. These few years with you have been a bliss for me. It has been truly joyful and I am sure that I'll never find this kind of happiness and joy in my life ever again. I will cherish these moments forever. Now that I know that I have lost you for life, I have to spend the rest of my life holding you in my heart . It will get heavier each day but I promise to hold you there till the second my heart stops. I will keep looking for your memories in all the places I visit and in all the things I do. Life without you seems impossible but there was this sentence this girl says in the movie when her boyfriend tries to commit suicide - "Nee paakura ella edathulayum enna pathi edho oru nyabagam varudhu la, aprm en sethu poi ellathayum marakanum". It was so beautiful. Even though it hurts, I'll be happy to get a glimpse of you in all the places I go and in all the things I do.How can I ever forget all this and move on, how can I ever pretend like all this didn't exist once. It breaks my heart into pieces to know that all these memories were just to hold on and carry them along for life and not to actually live in them. Anyway, thank you for this memorable ride. You have really made me a better person. I have learned a lot from you, you've taught me to be kind and empathetic. I will always carry these learnings all my life. You don't forget to be the winner you've always been. "Set your heart ablaze, go beyond your limits". Achieve everything you've ever wanted, become the most happiest and successful person. I hurt you but all these things, I wished for you from the bottom of my heart always - since day 1. Goodbye, my dear champion. Hope there is another lifetime where I'll be your bujuk bujuk again and you'll be my bujuk bujuk again, where we go on dates all over again, where we kiss each other with full of love and where you feel secured and safe, where we crack dumb jokes about each other and make fun of eachother everytime we mispronounce a word, where we love each other unconditionally and most importantly, where we get married and stay together forever and build our own little famlily , where we get to grow old , where I get to die when I'm yours. If a lifetime like that ever comes again, let's meet then.  Until then, see you bujuk bujuk <3 *our handshake*
+    </p>
+</div>
+
+<script>
+
+/* Floating sunflower generator */
+
+function createSunflower(){
+
+    const flower=document.createElement("div");
+    flower.className="sunflower";
+    flower.innerHTML="🌻";
+
+    flower.style.left=Math.random()*100+"vw";
+    flower.style.fontSize=(Math.random()*20+25)+"px";
+    flower.style.animationDuration=(Math.random()*5+5)+"s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(()=>{
+        flower.remove();
+    },8000);
+}
+
+setInterval(createSunflower,500);
+
+</script>
+
+</body>
+</html>
